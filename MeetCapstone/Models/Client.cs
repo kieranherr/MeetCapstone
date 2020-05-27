@@ -7,7 +7,7 @@ using MeetCapstone.Data;
 
 namespace MeetCapstone.Models
 {
-    public class User
+    public class Client
     {
         [Key]
         public int UserId { get; set; }

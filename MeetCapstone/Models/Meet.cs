@@ -7,7 +7,7 @@ using MeetCapstone.Data;
 
 namespace MeetCapstone.Models
 {
-    public class Meets
+    public class Meet
     {
         [Key]
         public int MeetId { get; set; }
