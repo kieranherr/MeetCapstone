@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MeetCapstone.Data.Migrations
+namespace MeetCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200527132221_MeetDatabase2")]
+    [Migration("20200528210342_MeetDatabase2")]
     partial class MeetDatabase2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace MeetCapstone.Data.Migrations
 
             modelBuilder.Entity("MeetCapstone.Models.Client", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("ClientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -82,7 +82,7 @@ namespace MeetCapstone.Data.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.HasKey("ClientId");
 
                     b.ToTable("Clients");
                 });
@@ -94,7 +94,17 @@ namespace MeetCapstone.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.HasKey("GarageId");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Garages");
                 });
@@ -105,6 +115,9 @@ namespace MeetCapstone.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Lat")
                         .HasColumnType("float");
@@ -122,6 +135,8 @@ namespace MeetCapstone.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MeetId");
+
+                    b.HasIndex("CarId");
 
                     b.ToTable("Meets");
                 });
@@ -324,6 +339,24 @@ namespace MeetCapstone.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("MeetCapstone.Models.Garage", b =>
+                {
+                    b.HasOne("MeetCapstone.Models.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId");
+
+                    b.HasOne("MeetCapstone.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+                });
+
+            modelBuilder.Entity("MeetCapstone.Models.Meet", b =>
+                {
+                    b.HasOne("MeetCapstone.Models.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
