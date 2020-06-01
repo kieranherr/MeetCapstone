@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using MeetCapstone.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace MeetCapstone.Models
 {
@@ -13,13 +15,10 @@ namespace MeetCapstone.Models
         public int ClientId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
         public long PhoneNumber { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
         public List<Client> Friends { get; set; }
-
 
     }
 }

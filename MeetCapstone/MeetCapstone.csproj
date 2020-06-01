@@ -6,12 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20200527125920_MeetDatabase.cs" />
-    <Compile Remove="Data\Migrations\20200527125920_MeetDatabase.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200527130033_MeetDatabase.cs" />
-    <Compile Remove="Data\Migrations\20200527130033_MeetDatabase.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200527130259_MeetCapstoneDatabae.cs" />
-    <Compile Remove="Data\Migrations\20200527130259_MeetCapstoneDatabae.Designer.cs" />
+    <Compile Remove="Data\Migrations\**" />
+    <Content Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
+    <None Remove="Data\Migrations\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +20,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -54,7 +54,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GarageId")] Garage garage)
+        public async Task<IActionResult> Create([Bind("GarageId, ClientId, CarId")] Garage garage)
         {
             if (ModelState.IsValid)
             {

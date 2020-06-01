@@ -54,7 +54,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientId,FirstName,LastName,Email,Password,PhoneNumber,Age,City")] Client client)
+        public async Task<IActionResult> Create([Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstName,LastName,Email,Password,PhoneNumber,Age,City")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City")] Client client)
         {
             if (id != client.ClientId)
             {

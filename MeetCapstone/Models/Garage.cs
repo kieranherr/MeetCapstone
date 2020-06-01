@@ -13,8 +13,10 @@ namespace MeetCapstone.Models
     {
         [Key]
         public int GarageId { get; set; }
+
         [ForeignKey ("ClientId")]
         public Client Client { get; set; } 
+
         [ForeignKey ("CarId")]
         public Car Car { get; set; }
 
