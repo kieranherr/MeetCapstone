@@ -54,7 +54,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MeetId,MeetName,Lat,Long,MeetTime,MeetDate")] Meet meet)
+        public async Task<IActionResult> Create([Bind("MeetId,MeetName,Lat,Long,Street,City,State,Zip,MeetTime,MeetDate")] Meet meet)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MeetId,MeetName,Lat,Long,MeetTime,MeetDate")] Meet meet)
+        public async Task<IActionResult> Edit(int id, [Bind("MeetId,MeetName,Lat,Long,Street,City,State,Zip,MeetTime,MeetDate")] Meet meet)
         {
             if (id != meet.MeetId)
             {

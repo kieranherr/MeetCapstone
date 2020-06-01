@@ -15,6 +15,10 @@ namespace MeetCapstone.Models
         public string MeetName { get; set; }
         public double Lat { get; set; }
         public double Long { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public long Zip { get; set; }
         public string MeetTime { get; set; }
         public string MeetDate { get; set; }
         [ForeignKey ("CarId")]
