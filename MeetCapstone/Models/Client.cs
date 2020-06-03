@@ -19,6 +19,7 @@ namespace MeetCapstone.Models
         public int Age { get; set; }
         public string City { get; set; }
         public List<Client> Friends { get; set; }
-
+        [ForeignKey ("Id")]
+        public IdentityUser userId { get; set; }
     }
 }

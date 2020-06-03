@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MeetCapstone.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MeetCapstone.Data
 {
@@ -12,6 +13,17 @@ namespace MeetCapstone.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+        protected override void OnModelCreating(ModelBuilder builder) 
+        { 
+            base.OnModelCreating(builder); 
+            builder.Entity<IdentityRole>()
+                .HasData(
+                new IdentityRole
+                { Name = "Admin",
+                    NormalizedName = "ADMIN"
+                }
+                ); 
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Garage> Garages { get; set; }
