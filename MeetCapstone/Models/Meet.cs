@@ -23,6 +23,5 @@ namespace MeetCapstone.Models
         public string MeetDate { get; set; }
         [ForeignKey ("CarId")]
         public Car Car { get; set; }
-
     }
 }
