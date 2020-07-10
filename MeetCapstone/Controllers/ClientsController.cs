@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MeetCapstone.Data;
 using MeetCapstone.Models;
+using System.Security.Claims;
 
 namespace MeetCapstone.Controllers
 {
@@ -22,7 +23,8 @@ namespace MeetCapstone.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clients.ToListAsync());
+            var applicationDbContext = _context.Clients.Include(c => c.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Clients/Details/5
@@ -34,6 +36,7 @@ namespace MeetCapstone.Controllers
             }
 
             var client = await _context.Clients
+                .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.ClientId == id);
             if (client == null)
             {
@@ -46,6 +49,7 @@ namespace MeetCapstone.Controllers
         // GET: Clients/Create
         public IActionResult Create()
         {
+           
             return View();
         }
 
@@ -54,7 +58,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City")] Client client)
+        public async Task<IActionResult> Create([Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City,IdentityUserId")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +66,7 @@ namespace MeetCapstone.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", client.IdentityUserId);
             return View(client);
         }
 
@@ -78,6 +83,7 @@ namespace MeetCapstone.Controllers
             {
                 return NotFound();
             }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", client.IdentityUserId);
             return View(client);
         }
 
@@ -86,7 +92,7 @@ namespace MeetCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstName,LastName,PhoneNumber,Age,City,IdentityUserId")] Client client)
         {
             if (id != client.ClientId)
             {
@@ -113,6 +119,7 @@ namespace MeetCapstone.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", client.IdentityUserId);
             return View(client);
         }
 
@@ -125,6 +132,7 @@ namespace MeetCapstone.Controllers
             }
 
             var client = await _context.Clients
+                .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.ClientId == id);
             if (client == null)
             {

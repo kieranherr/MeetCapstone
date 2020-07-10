@@ -21,7 +21,7 @@ namespace MeetCapstone.Data
                 .HasData(
                 new IdentityRole
                 { Name = "Admin",
-                    NormalizedName = "ADMIN"
+                    NormalizedName = "CLIENT"
                 }
                 ); 
         }
